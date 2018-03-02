@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 50520550590902318}
   m_Layer: 8
   m_Name: grassRow
-  m_TagString: Untagged
+  m_TagString: BackgroundGrass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
