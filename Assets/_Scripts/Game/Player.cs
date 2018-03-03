@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
     [Header("Properties")]
     public float speed = 8.0f;
     public float turboSpeedup = 2.0f;
+    public float weaponCooldownTime = 0.1f;
 
     // control the possible movement area for the player ship
     float topMoveExtent = 4.4f;
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour {
     public AudioSource[] audioSources;
 
     Transform weaponSpawn;
+    bool cooledDown = true;
 
 
     // Use this for initialization
@@ -58,12 +60,18 @@ public class Player : MonoBehaviour {
 
 
         // WEAPONS
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(cooledDown && Input.GetKey(KeyCode.Space))
         {
             var b = Instantiate(laser1Obj) as GameObject;
             b.transform.position = weaponSpawn.position;
             audioSources.Where(s => s.name == "Laser1Fire").Single().Play();
+            StartCoroutine(WaitForCooldown());
         }
-
+    }
+    IEnumerator WaitForCooldown()
+    {
+        cooledDown = false;
+        yield return new WaitForSeconds(weaponCooldownTime);
+        cooledDown = true;
     }
 }
