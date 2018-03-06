@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour {
-
+public class BossMovement : MonoBehaviour {
     public float speed = 5f;
     public float mag;
 
@@ -11,7 +10,7 @@ public class EnemyMovement : MonoBehaviour {
     public float weaponCooldownTime = .8f;
 
     [Header("References")]
-    public GameObject EnemyShip1Laser;
+    public GameObject BossLaser1;
     Transform weaponSpawn;
     bool cooledDown = true;
 
@@ -29,7 +28,7 @@ public class EnemyMovement : MonoBehaviour {
         // WEAPONS
         if (cooledDown)
         {
-            var b = Instantiate(EnemyShip1Laser) as GameObject;
+            var b = Instantiate(BossLaser1) as GameObject;
             b.transform.position = weaponSpawn.position;
             StartCoroutine(WaitForCooldown());
         }
