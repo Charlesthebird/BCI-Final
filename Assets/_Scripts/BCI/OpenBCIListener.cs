@@ -7,10 +7,32 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class OpenBCIListener : MonoBehaviour {
+    public float curBetaValue = 5;
 
+
+    public class EEGData
+    {
+        public string type;
+        public List<List<double>> data;
+
+
+        public float getBeta()
+        {
+            if (data.Count == 0 || data[0].Count < 5)
+                return -1;
+            // gets the average of all the beta waves 
+            var avg = 0.0f;
+            for (int i = 0; i < data.Count; i++)
+            {
+                avg += (float)data[i][3];
+            }
+            avg /= data.Count;
+            return avg;
+        }
+    }
     public static bool messageReceived = false;
     public static string msg = "";
     private static System.Object msgLock = new System.Object();
@@ -49,19 +71,6 @@ public class OpenBCIListener : MonoBehaviour {
     }
 
 
-    public class EEGData
-    {
-        public string type;
-        public List<List<double>> data;
-       
-
-        public double getBeta()
-        {
-            if (data.Count == 0 || data[0].Count < 5)
-                return -1;
-            return data[0][2];//[0][5];
-        }
-    }
 
 
     // Update is called once per frame
@@ -72,8 +81,13 @@ public class OpenBCIListener : MonoBehaviour {
             if(messageReceived)
             {
                 //Debug.Log("RECIEVED msg: " + msg);
+                // 0 to 30
                 var data = JsonConvert.DeserializeObject<EEGData>(msg);
-                Debug.Log("RECIEVED Beta wave: " + data.getBeta());
+                curBetaValue = data.getBeta();
+                //var t = GetComponent<Text>();
+                //t.text = b.ToString();
+                //t.color = new Color(b / 5.0f, 0, 0);
+                //Debug.Log("RECIEVED Beta wave: " + data.getBeta());
                 messageReceived = false;
                 receivingUdpClient.BeginReceive(new AsyncCallback(ReceiveCallback), s);
             }

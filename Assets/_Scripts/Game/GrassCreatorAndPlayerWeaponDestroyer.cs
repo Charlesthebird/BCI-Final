@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackgroundCreatorAndPlayerWeaponDestroyer : MonoBehaviour {
+public class GrassCreatorAndPlayerWeaponDestroyer : MonoBehaviour {
     public GameObject grassRow;
 
     void OnTriggerExit2D(Collider2D coll)

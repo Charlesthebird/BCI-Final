@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,7 +16,10 @@ public class SceneController : MonoBehaviour {
     public GameObject uiContainer;
     [HideInInspector]
     public GameObject screenFade;
+    [HideInInspector]
+    public OpenBCIListener bci;
 
+    public AudioSource[] audioSources;
 
     void Awake () {
         onAwake.Invoke();
@@ -24,6 +28,7 @@ public class SceneController : MonoBehaviour {
         levelContainer = GameObject.Find("LevelContainer");
         uiContainer = GameObject.Find("UIContainer");
         screenFade = GameObject.Find("ScreenFade");
+        bci = GameObject.Find("BCIListener").GetComponent<OpenBCIListener>();
 
         // set up the game to start
         levelContainer.SetActive(false);
@@ -41,5 +46,10 @@ public class SceneController : MonoBehaviour {
         uiContainer.SetActive(true);
         yield return new WaitForEndOfFrame();
         levelContainer.SetActive(true);
+    }
+
+    public void PlaySound(string soundName)
+    {
+        audioSources.Where(s => s.name == soundName).Single().Play();
     }
 }

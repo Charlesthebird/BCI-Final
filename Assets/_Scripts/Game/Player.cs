@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : GameElement {
     [Header("Properties")]
     public float speed = 8.0f;
     public float turboSpeedup = 2.0f;
@@ -30,6 +30,9 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        float baseSpeed = .5f;
+        Time.timeScale = Mathf.Min(5.0f, baseSpeed + (sceneController.bci.curBetaValue / 7.0f));
+        Debug.Log(sceneController.bci.curBetaValue);
         //var h = Input.GetAxis("Horizontal");
         //var v = Input.GetAxis("Vertical");
         
