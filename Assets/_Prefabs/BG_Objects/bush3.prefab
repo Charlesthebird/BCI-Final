@@ -19,7 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4353700692549920}
-  m_Layer: 0
+  - component: {fileID: 50274318128848786}
+  - component: {fileID: 58801611201127798}
+  - component: {fileID: 114434063840841198}
+  m_Layer: 8
   m_Name: bush3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,8 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4479761683448944}
   - component: {fileID: 212538187377318836}
-  - component: {fileID: 114046172281723296}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bush3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +52,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1524291805021114}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.1073844, y: -2.0827765, z: 0}
+  m_LocalPosition: {x: -8.453305, y: -3.306734, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4479761683448944}
@@ -70,12 +72,47 @@ Transform:
   m_Father: {fileID: 4353700692549920}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114046172281723296
+--- !u!50 &50274318128848786
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1524291805021114}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &58801611201127798
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1524291805021114}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.21
+--- !u!114 &114434063840841198
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1959240890796306}
+  m_GameObject: {fileID: 1524291805021114}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35f42b7fdd323184dbdf6ceb7a577a21, type: 3}

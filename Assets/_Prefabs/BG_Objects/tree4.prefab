@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4681171170358168}
   - component: {fileID: 212731260495898806}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tree4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4873394105851148}
   - component: {fileID: 114103624510666480}
-  m_Layer: 0
+  - component: {fileID: 58503979644642650}
+  - component: {fileID: 50893703286344922}
+  m_Layer: 8
   m_Name: tree4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4126925414650430}
   - component: {fileID: 212809843913667676}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: trees-and-bushes-shadows_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,13 +95,48 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1516244359561010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5.8675885, y: -5.494648, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4681171170358168}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50893703286344922
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1516244359561010}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &58503979644642650
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1516244359561010}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.29
 --- !u!114 &114103624510666480
 MonoBehaviour:
   m_ObjectHideFlags: 1

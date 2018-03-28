@@ -19,7 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4403365982619204}
-  m_Layer: 0
+  - component: {fileID: 50297872453573194}
+  - component: {fileID: 58113287909907800}
+  - component: {fileID: 114397842006137766}
+  m_Layer: 8
   m_Name: bush2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,8 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4947989537705408}
   - component: {fileID: 212764543211376472}
-  - component: {fileID: 114417585442973846}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bush2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,8 +51,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1308193562994922}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8848088, y: 1.2999585, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.950559, y: -1.8149741, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4947989537705408}
@@ -70,12 +72,47 @@ Transform:
   m_Father: {fileID: 4403365982619204}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114417585442973846
+--- !u!50 &50297872453573194
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1308193562994922}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &58113287909907800
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1308193562994922}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.3
+--- !u!114 &114397842006137766
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1337604957025230}
+  m_GameObject: {fileID: 1308193562994922}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35f42b7fdd323184dbdf6ceb7a577a21, type: 3}

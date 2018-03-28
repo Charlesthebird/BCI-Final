@@ -20,8 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4627866653806096}
   - component: {fileID: 212579974104415602}
-  - component: {fileID: 114384395900882114}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bush1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +35,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4727834603705568}
-  m_Layer: 0
+  - component: {fileID: 50057571999285806}
+  - component: {fileID: 58471151416595362}
+  - component: {fileID: 114605953973300730}
+  m_Layer: 8
   m_Name: bush1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,20 +64,55 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1980332640497534}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8848088, y: 1.2999585, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7.4090734, y: 0.124313235, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4627866653806096}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114384395900882114
+--- !u!50 &50057571999285806
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1980332640497534}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &58471151416595362
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1980332640497534}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.44
+--- !u!114 &114605953973300730
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1537365059339552}
+  m_GameObject: {fileID: 1980332640497534}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35f42b7fdd323184dbdf6ceb7a577a21, type: 3}

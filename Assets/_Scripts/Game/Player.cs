@@ -32,7 +32,7 @@ public class Player : GameElement {
 	void Update () {
         float baseSpeed = .5f;
         Time.timeScale = Mathf.Min(5.0f, baseSpeed + (sceneController.bci.curBetaValue / 7.0f));
-        Debug.Log(sceneController.bci.curBetaValue);
+        //Debug.Log(sceneController.bci.curBetaValue);
         //var h = Input.GetAxis("Horizontal");
         //var v = Input.GetAxis("Vertical");
         
