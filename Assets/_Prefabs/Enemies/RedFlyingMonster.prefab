@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 4708455761869720}
   - component: {fileID: 114673165743777028}
   - component: {fileID: 58706302316538338}
-  - component: {fileID: 114960277761598130}
   - component: {fileID: 50815098358494356}
   m_Layer: 10
   m_Name: RedFlyingMonster
@@ -140,18 +139,10 @@ MonoBehaviour:
   sceneController: {fileID: 0}
   destroyPrefab: {fileID: 1019509247864316, guid: 23558b385102bff43a45bde7282f945f,
     type: 2}
---- !u!114 &114960277761598130
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1638714292087324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35f42b7fdd323184dbdf6ceb7a577a21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: -2
+  curve: {fileID: 0}
+  speed: 0.03
+  curviness: 2
+  numPoints: 10
 --- !u!212 &212997076042404104
 SpriteRenderer:
   m_ObjectHideFlags: 1

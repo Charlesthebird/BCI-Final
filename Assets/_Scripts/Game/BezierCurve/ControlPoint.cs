@@ -11,7 +11,15 @@ public class ControlPoint : MonoBehaviour {
     public Transform ltTransform;
     public Transform rtTransform;
 
-    private void Update()
+    public BezierCurve curve;
+
+
+
+    private void Start()
+    {
+        UpdateReferences();
+    }
+    private void UpdateReferences()
     {
         // update the references to the position and tangents
         pos = transform.position;
@@ -19,14 +27,34 @@ public class ControlPoint : MonoBehaviour {
         rightTangent = rtTransform.position;
     }
 
-    public static GameObject CreateCPObject(Vector3 localPos, Vector3 leftTangent, Vector3 rightTangent, Transform parent)
+    public void SetWorldPosition(Vector3 newPos)
+    {
+        transform.position = newPos;
+        UpdateReferences();
+        curve.RefreshCurve();
+    }
+    public void SetLeftTangentWorldPos(Vector3 newPos)
+    {
+        ltTransform.position = newPos;
+        UpdateReferences();
+        curve.RefreshCurve();
+    }
+    public void SetRightTangentWorldPos(Vector3 newPos)
+    {
+        rtTransform.position = newPos;
+        UpdateReferences();
+        curve.RefreshCurve();
+    }
+
+    public static GameObject CreateCPObject(Vector3 localPos, Vector3 leftTangent, Vector3 rightTangent, BezierCurve curve)
     {
         // set up the control point gameObject
         var g = new GameObject();
-        g.transform.parent = parent;
+        g.transform.parent = curve.transform;
         g.transform.localPosition = localPos;
         g.name = "Control Point - " + g.transform.GetSiblingIndex();
         var cp = g.AddComponent<ControlPoint>();
+        cp.curve = curve;
         // set up the tangent gameObjects
         var ltObj = new GameObject();
         ltObj.transform.parent = cp.transform;
