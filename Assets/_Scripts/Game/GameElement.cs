@@ -8,7 +8,7 @@ public class GameElement : MonoBehaviour
     [HideInInspector]
     public SceneController sceneController;
 
-    void Awake()
+    protected void Awake()
     {
         sceneController = GameObject.FindObjectOfType<SceneController>();
     }

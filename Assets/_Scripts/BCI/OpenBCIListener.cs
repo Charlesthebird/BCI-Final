@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -15,34 +16,33 @@ public class OpenBCIListener : MonoBehaviour {
     public float secondsToAverage = 5;
     public List<EEGData> cachedEEGData;
 
-    private int lastTime = 0;
+    private float lastTime = 0;
 
 
     public class EEGData
     {
         public string type;
         public List<List<double>> data;
-
+        public float timestamp;
+        // {"type":"bandPower",        //  "data":[[0.67796624,1.9630938,2.5061078,14.015687,25.454866],[0.8223976,3.18445,3.152183,17.37749,26.149632],        //          [6.943687,34.68595,16.464489,35.98638,34.788563],[6.409976,32.323486,16.830719,36.632137,34.20752]]}
 
         public float GetBeta()
         {
-            if (data.Count == 0 || data[0].Count < 5)
-                return -1;
-            // gets the average of all the beta waves 
-            var avg = 0.0f;
-            for (int i = 0; i < data.Count; i++)
-            {
-                avg += (float)data[i][3];
-            }
-            avg /= data.Count;
-            return avg;
-        }
-
-        public int GetTime()
-        {
-            // get time from timestamp in json
-            var time = 0;
-            return time;
+            //if (data.Count == 0 || data[0].Count < 5)
+            //    return -1;
+            //// gets the average of all the beta waves 
+            //var avg = 0.0f;
+            //for (int i = 0; i < data.Count; i++)
+            //{
+            //    avg += (float)data[i][3];
+            //}
+            //avg /= data.Count;
+            //return avg;
+            // gives relative beta
+            // alpha / (beta + theta) for relaxation
+            return (float)(data[0][3] / (data[0][1] + data[0][2]));
+            // beta / (alpha + theta) for attentiveness
+            //return (float)(data[0][2] / (data[0][3] + data[0][1]));
         }
     }
     public static bool messageReceived = false;
@@ -68,6 +68,10 @@ public class OpenBCIListener : MonoBehaviour {
             msg = receiveString;
         }
     }
+    private void Awake()
+    {
+        cachedEEGData = new List<OpenBCIListener.EEGData>();
+    }
 
     // Use this for initialization
     void Start () {
@@ -89,20 +93,23 @@ public class OpenBCIListener : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        //RemoveOldCachedData();
+        RemoveOldCachedData();
         lock (msgLock)
         {
             if(messageReceived)
             {
-                //Debug.Log("RECIEVED msg: " + msg);
+                Debug.Log("RECIEVED msg: " + msg);
                 // 0 to 30
                 var data = JsonConvert.DeserializeObject<EEGData>(msg);
                 curBetaValue = data.GetBeta();
-                lastTime = data.GetTime();
+                data.timestamp = Time.time;
+                lastTime = data.timestamp;
 
                 // add the data to the cached list
                 cachedEEGData.Add(data);
 
+                // get the avg of the most recent beta values
+                curBetaAverage = cachedEEGData.Average(d => d.GetBeta());
 
                 //var t = GetComponent<Text>();
                 //t.text = b.ToString();
@@ -119,7 +126,7 @@ public class OpenBCIListener : MonoBehaviour {
         var dataBuffer = new List<EEGData>();
         for(var i=0; i<cachedEEGData.Count; i++)
         {
-            var time = cachedEEGData[i].GetTime();
+            var time = cachedEEGData[i].timestamp;
             if (time > lastTime - secondsToAverage)
             {
                 dataBuffer.Add(cachedEEGData[i]);

@@ -30,8 +30,13 @@ public class Player : GameElement {
 	
 	// Update is called once per frame
 	void Update () {
-        float baseSpeed = .5f;
-        Time.timeScale = Mathf.Min(5.0f, baseSpeed + (sceneController.bci.curBetaValue / 7.0f));
+        // time wasn't good to change
+        //float baseSpeed = .5f;
+        //var recentMax = 0.0f;
+        //if(sceneController.bci.cachedEEGData.Count > 0)
+        //    recentMax = sceneController.bci.cachedEEGData.Max(d => d.GetBeta());
+        //Time.timeScale = Mathf.Min(2.0f, baseSpeed + (sceneController.bci.curBetaAverage / recentMax));
+
         //Debug.Log(sceneController.bci.curBetaValue);
         //var h = Input.GetAxis("Horizontal");
         //var v = Input.GetAxis("Vertical");
