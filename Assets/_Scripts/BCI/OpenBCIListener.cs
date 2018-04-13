@@ -11,6 +11,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class OpenBCIListener : MonoBehaviour {
+    public bool isOffline = true;
     public float curBetaValue = 5;
     public float curBetaAverage = 5;
     public float secondsToAverage = 5;
@@ -24,7 +25,10 @@ public class OpenBCIListener : MonoBehaviour {
         public string type;
         public List<List<double>> data;
         public float timestamp;
-        // {"type":"bandPower",        //  "data":[[0.67796624,1.9630938,2.5061078,14.015687,25.454866],[0.8223976,3.18445,3.152183,17.37749,26.149632],        //          [6.943687,34.68595,16.464489,35.98638,34.788563],[6.409976,32.323486,16.830719,36.632137,34.20752]]}
+        // {"type":"bandPower",
+        //  "data":[[0.67796624,1.9630938,2.5061078,14.015687,25.454866],[0.8223976,3.18445,3.152183,17.37749,26.149632],
+        //          [6.943687,34.68595,16.464489,35.98638,34.788563],[6.409976,32.323486,16.830719,36.632137,34.20752]]}
+
 
         public float GetBeta()
         {
@@ -67,15 +71,16 @@ public class OpenBCIListener : MonoBehaviour {
             messageReceived = true;
             msg = receiveString;
         }
+        Debug.Log("RECIEVED DATA");
     }
     private void Awake()
     {
-        cachedEEGData = new List<OpenBCIListener.EEGData>();
+        cachedEEGData = new List<EEGData>();
     }
 
     // Use this for initialization
     void Start () {
-        cachedEEGData = new List<EEGData>();
+        if (isOffline) return;
         //Creates a UdpClient for reading incoming data.
         ipEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 12345);
         receivingUdpClient = new UdpClient(ipEndPoint);
@@ -93,6 +98,13 @@ public class OpenBCIListener : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        if (isOffline)
+        {
+            curBetaValue = (Mathf.Sin(Time.time / 3.0f) + 1.2f) / 2.0f;
+            curBetaAverage = curBetaValue;
+            return;
+        }
+
         RemoveOldCachedData();
         lock (msgLock)
         {
@@ -134,5 +146,10 @@ public class OpenBCIListener : MonoBehaviour {
         }
         // update the data
         cachedEEGData = dataBuffer;
+    }
+    private void OnDestroy()
+    {
+        if(receivingUdpClient != null)
+            receivingUdpClient.Close();
     }
 }

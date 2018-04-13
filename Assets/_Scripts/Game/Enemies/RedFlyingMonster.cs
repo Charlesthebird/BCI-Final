@@ -28,6 +28,8 @@ public class RedFlyingMonster : GameElement
     public float curviness = .5f;
     float cachedCurviness;
 
+    float bciScale = 1f;
+
 
 
     protected new void Awake()
@@ -95,7 +97,7 @@ public class RedFlyingMonster : GameElement
         //curveDeviation = Mathf.Sin(Time.time) * 3.0f;
 
         // ----------------------- update deviation based on bci 
-        curveDeviation = Mathf.Min(2, sceneController.bci.curBetaAverage / 20.0f);
+        curveDeviation = bciScale * Mathf.Clamp(sceneController.bci.curBetaAverage, .2f, 1.5f);
 
 
 
@@ -151,13 +153,10 @@ public class RedFlyingMonster : GameElement
 
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.tag == "Player")
-        {
-            Debug.Log("boom");
-        }
         var w = coll.GetComponent<PlayerWeapon>();
         if (w != null)
         {
+            sceneController.player.AddToScore(7);
             // destroy the laser
             Destroy(w.gameObject);
             // destroy this enemy
