@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class OpenBCIListener : MonoBehaviour {
-    public bool isOffline = true;
+    public bool isOffline;
     public float curBetaValue = 5;
     public float curBetaAverage = 5;
     public float secondsToAverage = 5;
@@ -43,9 +43,9 @@ public class OpenBCIListener : MonoBehaviour {
             //avg /= data.Count;
             //return avg;
             // gives relative beta
-            // alpha / (beta + theta) for relaxation
-            return (float)(data[0][3] / (data[0][1] + data[0][2]));
             // beta / (alpha + theta) for attentiveness
+            return (float)(data[0][3] / (data[0][1] + data[0][2]));
+            // alpha / (beta + theta) for relaxation
             //return (float)(data[0][2] / (data[0][3] + data[0][1]));
         }
     }
@@ -71,7 +71,6 @@ public class OpenBCIListener : MonoBehaviour {
             messageReceived = true;
             msg = receiveString;
         }
-        Debug.Log("RECIEVED DATA");
     }
     private void Awake()
     {
